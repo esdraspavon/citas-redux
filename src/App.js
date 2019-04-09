@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Header from "./components/Header";
 import Form from "./components/Form";
+import List from "./components/List";
 
 class App extends Component {
   state = {
@@ -17,6 +18,9 @@ class App extends Component {
         <div className="row">
           <div className="col-md-6">
             <Form makeDate={this.makeDate} />
+          </div>
+          <div className="col-md-6">
+            <List dates={this.state.dates} />
           </div>
         </div>
       </div>
