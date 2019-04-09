@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Date from "./Date";
+import PropTypes from "prop-types";
 
 class List extends Component {
   state = {};
@@ -26,5 +27,10 @@ class List extends Component {
     );
   }
 }
+
+List.propTypes = {
+  dates: PropTypes.array.isRequired,
+  deleteDate: PropTypes.func.isRequired
+};
 
 export default List;

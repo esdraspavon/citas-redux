@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import uuid from "uuid";
+import PropTypes from "prop-types";
 
 class Form extends Component {
   //refs
@@ -129,5 +130,9 @@ class Form extends Component {
     );
   }
 }
+
+Form.propTypes = {
+  makeDate: PropTypes.func.isRequired
+};
 
 export default Form;
