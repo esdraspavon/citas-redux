@@ -9,29 +9,46 @@ class Form extends Component {
   timeRef = React.createRef();
   symptomRef = React.createRef();
 
-  state = {};
+  state = {
+    error: false
+  };
 
   makeNewDate = e => {
     e.preventDefault();
+
     const name = this.nameRef.current.value,
       own = this.ownRef.current.value,
       date = this.dateRef.current.value,
       time = this.timeRef.current.value,
       symptom = this.symptomRef.current.value;
-    const newDate = {
-      id: uuid(),
-      name,
-      own,
-      date,
-      time,
-      symptom
-    };
-    //Se envia el objeto para actualizar el state
-    this.props.makeDate(newDate);
-    //Reiniciar el formulario
-    e.currentTarget.reset();
+
+    if (
+      name === "" ||
+      own === "" ||
+      date === "" ||
+      time === "" ||
+      symptom === ""
+    ) {
+      this.setState({ error: true });
+    } else {
+      const newDate = {
+        id: uuid(),
+        name,
+        own,
+        date,
+        time,
+        symptom
+      };
+
+      //Se envia el objeto para actualizar el state
+      this.props.makeDate(newDate);
+      //Reiniciar el formulario
+      e.currentTarget.reset();
+      this.setState({ error: false });
+    }
   };
   render() {
+    const error = this.state.error;
     return (
       <div className="card mt-5">
         <div className="card-body">
@@ -100,6 +117,13 @@ class Form extends Component {
               </div>
             </div>
           </form>
+          {error ? (
+            <div className="alert alert-danger text-center">
+              Todos los campos son obligatorios
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     );
