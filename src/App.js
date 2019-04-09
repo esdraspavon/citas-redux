@@ -11,6 +11,16 @@ class App extends Component {
     const dates = [...this.state.dates, newDate];
     this.setState({ dates });
   };
+
+  deleteDate = id => {
+    //Obtener copia del state
+    const oldDates = [...this.state.dates];
+    //borrar el state
+    const dates = oldDates.filter(date => date.id !== id);
+    //Actualizar el state
+    this.setState({ dates });
+  };
+
   render() {
     return (
       <div className="container">
@@ -20,7 +30,7 @@ class App extends Component {
             <Form makeDate={this.makeDate} />
           </div>
           <div className="col-md-6">
-            <List dates={this.state.dates} />
+            <List dates={this.state.dates} deleteDate={this.deleteDate} />
           </div>
         </div>
       </div>

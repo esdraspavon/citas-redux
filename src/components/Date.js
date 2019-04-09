@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 class Date extends Component {
+  deleteDate = () => {
+    this.props.deleteDate(this.props.info.id);
+  };
+
   render() {
-    const { name, own, date, time, symptom, id } = this.props.info;
+    const { name, own, date, time, symptom } = this.props.info;
     return (
       <div className="media mt-3">
         <div className="media-body">
@@ -22,6 +26,9 @@ class Date extends Component {
             <span>Sintomas: </span>
             {symptom}
           </div>
+          <button onClick={this.deleteDate} className="btn btn-danger">
+            Borrar &times;
+          </button>
         </div>
       </div>
     );
