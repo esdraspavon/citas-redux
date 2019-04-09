@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import uuid from "uuid";
 
 class Form extends Component {
   //refs
@@ -12,13 +13,23 @@ class Form extends Component {
 
   makeNewDate = e => {
     e.preventDefault();
-
-    console.log(this.nameRef.current.value);
-    console.log(this.ownRef.current.value);
-    console.log(this.dateRef.current.value);
-    console.log(this.timeRef.current.value);
-    console.log(this.symptomRef.current.value);
-    this.props.makeDate();
+    const name = this.nameRef.current.value,
+      own = this.ownRef.current.value,
+      date = this.dateRef.current.value,
+      time = this.timeRef.current.value,
+      symptom = this.symptomRef.current.value;
+    const newDate = {
+      id: uuid(),
+      name,
+      own,
+      date,
+      time,
+      symptom
+    };
+    //Se envia el objeto para actualizar el state
+    this.props.makeDate(newDate);
+    //Reiniciar el formulario
+    e.currentTarget.reset();
   };
   render() {
     return (

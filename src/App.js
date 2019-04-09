@@ -3,7 +3,13 @@ import Header from "./components/Header";
 import Form from "./components/Form";
 
 class App extends Component {
-  makeDate = () => {};
+  state = {
+    dates: []
+  };
+  makeDate = newDate => {
+    const dates = [...this.state.dates, newDate];
+    this.setState({ dates });
+  };
   render() {
     return (
       <div className="container">
