@@ -14,10 +14,6 @@ class Form extends Component {
   timeRef = React.createRef();
   symptomRef = React.createRef();
 
-  state = {
-    error: false
-  };
-
   makeNewDate = e => {
     e.preventDefault();
 
