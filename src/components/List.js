@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import Date from "./Date";
 import PropTypes from "prop-types";
 
+//Redux
+import { connect } from "react-redux";
+import { getDates } from "../actions/datesActions";
+
 class List extends Component {
   state = {};
   render() {
@@ -33,4 +37,11 @@ List.propTypes = {
   deleteDate: PropTypes.func.isRequired
 };
 
-export default List;
+const mapStateToProps = state => ({
+  dates: state.dates.dates
+});
+
+export default connect(
+  mapStateToProps,
+  { getDates }
+)(List);
