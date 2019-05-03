@@ -6,6 +6,11 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getDates } from "../actions/datesActions";
 
+import store from "../store";
+store.subscribe(() => {
+  localStorage.setItem("dates", JSON.stringify(store.getState()));
+});
+
 class List extends Component {
   componentDidMount() {
     this.props.getDates();
@@ -21,11 +26,7 @@ class List extends Component {
           <h2 className="card-title text-center">{message}</h2>
           <div className="lista-citas">
             {this.props.dates.map(date => (
-              <Date
-                key={date.id}
-                info={date}
-                deleteDate={this.props.deleteDate}
-              />
+              <Date key={date.id} info={date} />
             ))}
           </div>
         </div>
@@ -35,8 +36,7 @@ class List extends Component {
 }
 
 List.propTypes = {
-  dates: PropTypes.array.isRequired,
-  deleteDate: PropTypes.func.isRequired
+  dates: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({

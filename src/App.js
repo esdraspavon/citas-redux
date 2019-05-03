@@ -8,28 +8,6 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 class App extends Component {
-  componentDidMount() {
-    const datesLS = localStorage.getItem("dates");
-    if (datesLS) {
-      this.setState({
-        dates: JSON.parse(datesLS)
-      });
-    }
-  }
-
-  componentDidUpdate() {
-    localStorage.setItem("dates", JSON.stringify(this.state.dates));
-  }
-
-  deleteDate = id => {
-    //Obtener copia del state
-    const oldDates = [...this.state.dates];
-    //borrar el state
-    const dates = oldDates.filter(date => date.id !== id);
-    //Actualizar el state
-    this.setState({ dates });
-  };
-
   render() {
     return (
       <Provider store={store}>
@@ -40,7 +18,7 @@ class App extends Component {
               <Form />
             </div>
             <div className="col-md-6">
-              <List deleteDate={this.deleteDate} />
+              <List />
             </div>
           </div>
         </div>
