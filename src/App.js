@@ -3,6 +3,10 @@ import Header from "./components/Header";
 import Form from "./components/Form";
 import List from "./components/List";
 
+//Redux
+import { Provider } from "react-redux";
+import store from "./store";
+
 class App extends Component {
   state = {
     dates: []
@@ -37,17 +41,19 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        <Header title={"Administrador de pacientes de veterinaria"} />
-        <div className="row">
-          <div className="col-md-6">
-            <Form makeDate={this.makeDate} />
-          </div>
-          <div className="col-md-6">
-            <List dates={this.state.dates} deleteDate={this.deleteDate} />
+      <Provider store={store}>
+        <div className="container">
+          <Header title={"Administrador de pacientes de veterinaria"} />
+          <div className="row">
+            <div className="col-md-6">
+              <Form makeDate={this.makeDate} />
+            </div>
+            <div className="col-md-6">
+              <List dates={this.state.dates} deleteDate={this.deleteDate} />
+            </div>
           </div>
         </div>
-      </div>
+      </Provider>
     );
   }
 }
