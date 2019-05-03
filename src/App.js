@@ -8,10 +8,6 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 class App extends Component {
-  state = {
-    dates: []
-  };
-
   componentDidMount() {
     const datesLS = localStorage.getItem("dates");
     if (datesLS) {
@@ -49,7 +45,7 @@ class App extends Component {
               <Form makeDate={this.makeDate} />
             </div>
             <div className="col-md-6">
-              <List dates={this.state.dates} deleteDate={this.deleteDate} />
+              <List deleteDate={this.deleteDate} />
             </div>
           </div>
         </div>

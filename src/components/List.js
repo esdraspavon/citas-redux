@@ -7,7 +7,9 @@ import { connect } from "react-redux";
 import { getDates } from "../actions/datesActions";
 
 class List extends Component {
-  state = {};
+  componentDidMount() {
+    this.props.getDates();
+  }
   render() {
     const dates = this.props.dates;
     const message =
