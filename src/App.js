@@ -21,11 +21,6 @@ class App extends Component {
     localStorage.setItem("dates", JSON.stringify(this.state.dates));
   }
 
-  makeDate = newDate => {
-    const dates = [...this.state.dates, newDate];
-    this.setState({ dates });
-  };
-
   deleteDate = id => {
     //Obtener copia del state
     const oldDates = [...this.state.dates];
@@ -42,7 +37,7 @@ class App extends Component {
           <Header title={"Administrador de pacientes de veterinaria"} />
           <div className="row">
             <div className="col-md-6">
-              <Form makeDate={this.makeDate} />
+              <Form />
             </div>
             <div className="col-md-6">
               <List deleteDate={this.deleteDate} />

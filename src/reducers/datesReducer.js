@@ -29,6 +29,11 @@ export default function(state = initialState, action) {
       return {
         ...state
       };
+    case ADD_DATE:
+      return {
+        ...state,
+        dates: [...state.dates, action.payload]
+      };
     default:
       return state;
   }

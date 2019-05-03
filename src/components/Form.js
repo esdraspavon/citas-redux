@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import uuid from "uuid";
 import PropTypes from "prop-types";
 
+//Redux
+import { connect } from "react-redux";
+import { addDate } from "../actions/datesActions";
+
 class Form extends Component {
   //refs
   nameRef = React.createRef();
@@ -42,7 +46,7 @@ class Form extends Component {
       };
 
       //Se envia el objeto para actualizar el state
-      this.props.makeDate(newDate);
+      this.props.addDate(newDate);
       //Reiniciar el formulario
       e.currentTarget.reset();
       this.setState({ error: false });
@@ -132,7 +136,14 @@ class Form extends Component {
 }
 
 Form.propTypes = {
-  makeDate: PropTypes.func.isRequired
+  addDate: PropTypes.func.isRequired
 };
 
-export default Form;
+const mapStateToProps = state => ({
+  dates: state.dates.dates
+});
+
+export default connect(
+  mapStateToProps,
+  { addDate }
+)(Form);
