@@ -1,8 +1,8 @@
-import { VALIDATE_FORM, SHOW_ERROR } from "./types";
+import { SHOW_ERROR } from "./types";
 
-export const validateForm = state => {
+export const showError = state => {
   return {
-    type: VALIDATE_FORM,
+    type: SHOW_ERROR,
     payload: state
   };
 };

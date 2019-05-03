@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 //Redux
 import { connect } from "react-redux";
 import { addDate } from "../actions/datesActions";
+import { showError } from "../actions/errorAction";
 
 class Form extends Component {
   //refs
@@ -13,6 +14,9 @@ class Form extends Component {
   dateRef = React.createRef();
   timeRef = React.createRef();
   symptomRef = React.createRef();
+  componentWillMount() {
+    this.props.showError(false);
+  }
 
   makeNewDate = e => {
     e.preventDefault();
@@ -30,7 +34,7 @@ class Form extends Component {
       time === "" ||
       symptom === ""
     ) {
-      this.setState({ error: true });
+      this.props.showError(true);
     } else {
       const newDate = {
         id: uuid(),
@@ -45,11 +49,12 @@ class Form extends Component {
       this.props.addDate(newDate);
       //Reiniciar el formulario
       e.currentTarget.reset();
-      this.setState({ error: false });
+      //Elimina el error
+      this.props.showError(false);
     }
   };
   render() {
-    const error = this.state.error;
+    const error = this.props.error;
     return (
       <div className="card mt-5">
         <div className="card-body">
@@ -136,10 +141,11 @@ Form.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  dates: state.dates.dates
+  dates: state.dates.dates,
+  error: state.error.error
 });
 
 export default connect(
   mapStateToProps,
-  { addDate }
+  { addDate, showError }
 )(Form);

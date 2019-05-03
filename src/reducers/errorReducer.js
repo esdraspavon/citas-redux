@@ -1,4 +1,4 @@
-import { VALIDATE_FORM, SHOW_ERROR } from "../actions/types";
+import { SHOW_ERROR } from "../actions/types";
 
 //cada reducer tiene su propio state
 
@@ -8,7 +8,7 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case VALIDATE_FORM:
+    case SHOW_ERROR:
       return {
         error: action.payload
       };
